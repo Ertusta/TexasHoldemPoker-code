@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "431646464884",
+    "firebase_url": "https://texaspoker-c8c69-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "texaspoker-c8c69",
+    "storage_bucket": "texaspoker-c8c69.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:431646464884:android:8fe48e7613785db89baa21",
+        "android_client_info": {
+          "package_name": "Texas.Poker.Game"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2E0HJll_2t2uUveYyv_Ef9w5ea9xVLGc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
