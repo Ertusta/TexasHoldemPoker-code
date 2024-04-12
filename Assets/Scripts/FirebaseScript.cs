@@ -233,7 +233,7 @@ public class FirebaseScript : MonoBehaviour
     //kullanýcýyý leaderboarda kaydetme
    public  IEnumerator Writeboard()
     {
-        Debug.Log("hello");
+        
         //class al
         var data1 = db.Child("LeaderBoard").GetValueAsync();
         yield return new WaitUntil(predicate: () => data1.IsCompleted);

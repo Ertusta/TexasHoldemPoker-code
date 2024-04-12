@@ -4527,8 +4527,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Deck: {fileID: 416766005}
   Table: {fileID: 866855916}
-  money: 10000
-  "HandL\u0130st":
+  Money: 10000
+  HandList:
   - {fileID: 1113614678}
   - {fileID: 982728293}
   - {fileID: 1558072001}

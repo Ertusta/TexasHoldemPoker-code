@@ -12,7 +12,7 @@ public class GameManage : MonoBehaviour
     public Transform Table;
 
 
-    public int money;
+    public int Money;
 
     int cardCount;
     int chooseCount;
@@ -31,7 +31,7 @@ public class GameManage : MonoBehaviour
     int playerPoint;
     int botPoint=-25;
 
-    public List<GameObject> HandLÝst;
+    public List<GameObject> HandList;
     public List<TMPro.TextMeshProUGUI> StateList;
     public List<TMPro.TextMeshProUGUI> BetList;
     public List<GameObject> ButtonList;
@@ -49,8 +49,8 @@ public class GameManage : MonoBehaviour
     public void Start()
     {
 
-        money = FirebaseScript.Instance.Money;
-        BetList[9].text = "Money:" + money;
+        Money = FirebaseScript.Instance.Money;
+        BetList[9].text = "Money:" + Money;
         State1();
 
     }
@@ -137,11 +137,11 @@ public class GameManage : MonoBehaviour
             if (botPoint < playerPoint)
             {
                 StateList[7].text = "kazandýn";
-                money += totalBet;
+                Money += totalBet;
             }
             else if (botPoint == playerPoint)
             {
-                money += totalBet / playerCount;
+                Money += totalBet / playerCount;
                 StateList[7].text = "Berabere";
             }
             else
@@ -172,30 +172,30 @@ public class GameManage : MonoBehaviour
             int randomNumber = Random.Range(0, cardCount - 1);
             Transform theChild = Deck.GetChild(randomNumber);
             theChild.position = new Vector3(-0.5f, -4, 0);
-            theChild.transform.SetParent(HandLÝst[7].transform);
+            theChild.transform.SetParent(HandList[7].transform);
 
             cardCount = Deck.childCount;
             randomNumber = Random.Range(0, cardCount - 1);
             theChild = Deck.GetChild(randomNumber);
             theChild.position = new Vector3(0.5f, -4, 0);
-            theChild.transform.SetParent(HandLÝst[7].transform);
+            theChild.transform.SetParent(HandList[7].transform);
 
         }
         else if (turn <= 4)
         {//her tur bahis yapar
             BetList[0].text = "bet:" + bet;
-            money -= bet;
-            BetList[9].text = "Money:" + money;
+            Money -= bet;
+            BetList[9].text = "Money:" + Money;
             totalBet += bet;
 
         }
         else if (turn == 5)
         {//sectigi 3 karta elindeki 2 karti ekler Result fonksiyonu deger dondurur
-            ChildList[scriptCount] = HandLÝst[7].transform.GetChild(0).gameObject;
+            ChildList[scriptCount] = HandList[7].transform.GetChild(0).gameObject;
             CardList[scriptCount] = ChildList[scriptCount].GetComponent<CardScript>();
             scriptCount++;
 
-            ChildList[scriptCount] = HandLÝst[7].transform.GetChild(1).gameObject;
+            ChildList[scriptCount] = HandList[7].transform.GetChild(1).gameObject;
             CardList[scriptCount] = ChildList[scriptCount].GetComponent<CardScript>();
             scriptCount++;
 
@@ -260,14 +260,14 @@ public class GameManage : MonoBehaviour
             Transform theChild = Deck.GetChild(randomNumber);
             theChild.position = new Vector3(CardPositionList[vector].x, CardPositionList[vector].y, CardPositionList[vector].z);
             vector++;
-            theChild.transform.SetParent(HandLÝst[control].transform);
+            theChild.transform.SetParent(HandList[control].transform);
 
             cardCount = Deck.childCount;
             randomNumber = Random.Range(0, cardCount - 1);
             theChild = Deck.GetChild(randomNumber);
             theChild.position = new Vector3(CardPositionList[vector].x, CardPositionList[vector].y, CardPositionList[vector].z);
             vector++;
-            theChild.transform.SetParent(HandLÝst[control].transform);
+            theChild.transform.SetParent(HandList[control].transform);
 
         }//rastgele bahis yada cekilmek
         else if (turn <= 4 && botList[control])
@@ -294,10 +294,10 @@ public class GameManage : MonoBehaviour
                 botList[control] = false;
                 StateList[control].text = "State:Fold";
 
-                Transform theChild = HandLÝst[control].transform.GetChild(0);
+                Transform theChild = HandList[control].transform.GetChild(0);
                 theChild.transform.SetParent(Deck.transform);
                 theChild.position = new Vector3(-600, -4, 0);
-                theChild = HandLÝst[control].transform.GetChild(0);
+                theChild = HandList[control].transform.GetChild(0);
                 theChild.transform.SetParent(Deck.transform);
                 theChild.position = new Vector3(-600, -4, 0);
             }
@@ -306,11 +306,11 @@ public class GameManage : MonoBehaviour
         else if (turn == 5 && botList[control])
         {
 
-            ChildList[scriptCount] = HandLÝst[control].transform.GetChild(0).gameObject;
+            ChildList[scriptCount] = HandList[control].transform.GetChild(0).gameObject;
             CardList[scriptCount] = ChildList[scriptCount].GetComponent<CardScript>();
             scriptCount++;
 
-            ChildList[scriptCount] = HandLÝst[control].transform.GetChild(1).gameObject;
+            ChildList[scriptCount] = HandList[control].transform.GetChild(1).gameObject;
             CardList[scriptCount] = ChildList[scriptCount].GetComponent<CardScript>();
             scriptCount++;
 
@@ -451,7 +451,7 @@ public class GameManage : MonoBehaviour
 
     public void Fold()
     {//cekilir
-        FirebaseScript.Instance.Money = money;
+        FirebaseScript.Instance.Money = Money;
         SceneManager.LoadScene("Menu");
         FirebaseScript.Instance.SaveData();
     }
@@ -713,7 +713,7 @@ public class GameManage : MonoBehaviour
     //parayý kaydet 
     void Finish()
     {
-        FirebaseScript.Instance.Money = money;
+        FirebaseScript.Instance.Money = Money;
 
 
         FirebaseScript.Instance.SaveData();

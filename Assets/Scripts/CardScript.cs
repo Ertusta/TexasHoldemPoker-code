@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 
-//kart classý
+//kart classi
 public class CardScript : MonoBehaviour
 {
     //tur ve deger tutat

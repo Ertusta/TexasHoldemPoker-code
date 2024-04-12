@@ -9,7 +9,7 @@ public class MenuScript : MonoBehaviour
     public TMPro.TextMeshProUGUI Name;
     public TMPro.TextMeshProUGUI Money;
 
-    public int money;
+    
 
     public GameObject Menu;
     public GameObject Board;
