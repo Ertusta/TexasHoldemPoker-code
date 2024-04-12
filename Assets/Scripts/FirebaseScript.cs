@@ -247,22 +247,49 @@ public class FirebaseScript : MonoBehaviour
         //mevcut puaný best 10 kiþiyle kýyasla
         while (number < 10)
         {//ayný isim yazilmasýn diye önlem
-            if (Lead.PointList[number] < Money && Lead.NameList[number - 1] != Nickname && Lead.PointList[number-1]>Money)
+            if (Lead.PointList[number] < Money )
             {
-                //listeye ekle 
-                Lead.PointList.Insert(number, Money);
-                Lead.NameList.Insert(number, Nickname);
+
+                if (number == 0)
+                {
+
+                    Lead.PointList[0] = Money;
+                    Lead.NameList[0] = Nickname;
 
 
-                //geriye düþeni sil
-                Lead.PointList.RemoveAt(9);
-                Lead.NameList.RemoveAt(9);
-                
-                //keydet
-                string json = JsonUtility.ToJson(Lead);
-                db.Child("LeaderBoard").SetRawJsonValueAsync(json);
+                    
+
+                    //keydet
+                    string json = JsonUtility.ToJson(Lead);
+                    db.Child("LeaderBoard").SetRawJsonValueAsync(json);
+
+
+                }
+                else if(Lead.PointList[number - 1] > Money && Lead.NameList[number-1] != Nickname)
+                {
+
+                    //listeye ekle 
+                    Lead.PointList.Insert(number, Money);
+                    Lead.NameList.Insert(number, Nickname);
+
+
+                    //geriye düþeni sil
+                    Lead.PointList.RemoveAt(9);
+                    Lead.NameList.RemoveAt(9);
+
+                    //keydet
+                    string json = JsonUtility.ToJson(Lead);
+                    db.Child("LeaderBoard").SetRawJsonValueAsync(json);
+
+                    
+
+
+                }
+
 
                 break;
+
+
             }
             number++;
 

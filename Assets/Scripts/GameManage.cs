@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
+
 using UnityEngine.XR;
 using UnityEngine.SceneManagement;
 
@@ -29,7 +29,7 @@ public class GameManage : MonoBehaviour
     bool task = false;
 
     int playerPoint;
-    int botPoint;
+    int botPoint=-25;
 
     public List<GameObject> HandLÝst;
     public List<TMPro.TextMeshProUGUI> StateList;
@@ -391,18 +391,7 @@ public class GameManage : MonoBehaviour
 
 
         }
-        else if (turn == 6 && botList[control])
-        {
-            Transform theChild = HandLÝst[control].transform.GetChild(0);
-            theChild.transform.SetParent(Deck.transform);
-            theChild.position = new Vector3(-600, -4, 0);
-            theChild = HandLÝst[control].transform.GetChild(0);
-            theChild.transform.SetParent(Deck.transform);
-            theChild.position = new Vector3(-600, -4, 0);
-
-
-
-        }
+        
 
 
 
@@ -411,8 +400,12 @@ public class GameManage : MonoBehaviour
     void State3()
     {// botlar icin dongu saglar
 
-
-        if (control < 6)
+        if(playerCount == 0)
+        {
+            turn = 5;
+            Invoke("State0", 1);
+        }
+        else if (control < 6)
         {
             Invoke("State2", 1);
             control++;
